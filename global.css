@@ -1,1 +1,8 @@
 * { font-family: monospace;}
+ul { 
+  list-style: none;   
+  margin-left: 0;
+  padding-left: 0;
+}
+li { text-indent: 1em; }
+li:before { content: "» "; }
