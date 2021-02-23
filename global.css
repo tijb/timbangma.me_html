@@ -1,8 +1,6 @@
 /* Only monospace font */
 * { font-family: monospace;}
-/* Remove default list bullets */
-ul { list-style: none;   margin-left: 0; padding-left: 0; }
+/* Remove default list bullets, and margins */
+ul { list-style: none; }
 /* Set custom list bullet */
 li:before { content: "» "; }
-/* Add indenting to custom list bullet */
-li { text-indent: 1em; }
