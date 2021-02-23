@@ -3,10 +3,93 @@
 <head>
   <title>resume » timbangma.me</title>
   <link href="global.css" type="text/css" rel="stylesheet" />
+  <style>
+    h1,
+    h2 {
+      display: inline;
+      margin-right: 1em;
+    }
+  
+    .job h1 {
+      font-size: x-large;
+      display: inline;
+      margin-right: 1em;
+    }
+  
+    .job h1::after {
+      content: ' ›'
+    }
+  
+    .job h2 {
+      font-size: large;
+      display: inline;
+      font-style: italic;
+      font-weight: 300;
+    }
+  
+    .job {
+      margin: 1em;
+    }
+  
+    .languages {
+      font-style: oblique;
+      margin: 0.5em;
+    }
+  
+    .content {
+      font-weight: 100;
+      background-color: #eee;
+      padding: 10px;
+    }
+  </style>
 </head>
 
 <body>
-  <h1>tim bangma | SRE @ ArcticWolf</h1>
+  <h1>tim bangma</h1>
+  <h2>≈ Software Developer & SRE</h2>
+  <p>
+    I am a software developer and SRE. For my personal projects, I like to mess around with Rust.
+  </p>
+  <div class="job">
+    <h1>Arctic Wolf | SRE</h1>
+    <h2><strong>Current</strong> Started: Nov 02 2020</h2>
+    <div class="languages">Python, Golang, Rust, CloudFormation, AWS</div>
+    <div class="content"></div>
+  </div>
+  <div class="job">
+    <h1>HP Inc | DevOps CI/CD Lead</h1>
+    <h2>Mar 02 2020 - Oct 30 2020</h2>
+    <div class="languages">AWS, Kubernetes, Jenkins, Groovy, Powershell, terraform, apigee, Python 2/3, Helm</div>
+    <div class="content"></div>
+  </div>
+  <div class="job">
+    <h1>Vidyard | Full-Stack Software Developer</h1>
+    <h2>04 Oct 2019 - Feb 28 2020</h2>
+    <div class="languages">Scala, Spark, Ruby, Ruby On Rails, NodeJS, AWS Lambda|Kinesis|Glue|SQS|S3</div>
+    <div class="content"></div>
+  </div>
+  <div class="job">
+    <h1>HP Inc | Cloud Software Developer</h1>
+    <h2>01 May 2018 - 27 Sept 2019</h2>
+    <div class="languages">Java, SpringBoot, Redis, MongoDB, AWS ApiGateway, Vagrant, Docker, NodeJS, grunt, gulp</div>
+    <div class="content"></div>
+  </div>
+  <div class="job">
+    <h1>ArcelorMittal | Software Developer</h1>
+    <h2>01 Jan 2016 - 31 Apr 2018</h2>
+    <div class="languages">Java, Kotlin, SpringBoot, AngularJS, Angular, NodeJS, PL/SQL, Oracle SQL, ASP, VB6</div>
+    <div class="content">
+      <ul>
+        <li>Full-Time Software Developer 01 Jan 2018 - 31 Apr 2018</li>
+        <li>Part-Time Contractor 01 Sept 2017 - 31 Dec 2017</li>
+        <li>Co-op (4 mo) 01 May 2017 - 31 Aug 2017</li>
+        <li>Co-op (8 mo) 01 Jan 2016 - 31 Aug 2016</li>
+      </ul>
+  
+      Developing sales-facing web applications to optimize the efficency of sales staff.<br>
+      Co-Lead Modernization initiative to bring legacy projects into common code base.<br>
+      Modernize and optimize Multi-Million dollar steel sales/auction platform.<br>
+    </div>
+  </div>
 </body>
-
 </html>
