@@ -4,3 +4,52 @@
 ul { list-style: none; }
 /* Set custom list bullet */
 li:before { content: "» "; }
+
+/* Resizes the h1 element inside the resume job containers */
+.job h1 {
+  font-size: x-large;
+  display: inline;
+  margin-right: 0.5em;
+}
+
+/* adds a caret character to put between the h1 and h2 elements in the resume job containers */
+.job h1::after {
+  content: ' ››'
+}
+
+/* Resizes the h2 element inside the resume job container */
+.job h2 {
+  font-size: large;
+  display: inline;
+  font-style: italic;
+  font-weight: 300;
+}
+
+/* adds spacing around each job container on the resume page */
+.job {
+  margin: 1em;
+}
+
+/* italicizes and pads the programming languages section for each job */
+.languages {
+  font-style: oblique;
+  margin: 0.5em;
+}
+
+/* prefixes the languages container with the double caret */
+.languages::before {
+  content: "» "
+}
+
+/* adds a dim padded background to the content section of each job */
+.content {
+  font-weight: 100;
+  background-color: #eee;
+  padding: 10px;
+}
+
+.home_button {
+  position: fixed;
+  top: 5px;
+  right: 5px;
+}
