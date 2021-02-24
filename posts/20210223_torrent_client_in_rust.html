@@ -1,0 +1,81 @@
+<head>
+  <title>posts/rust torrent client » timbangma.me</title>
+  <link href="/global.css" type="text/css" rel="stylesheet" />
+</head>
+
+<body>
+  <a class="home_button" href="/">home</a>
+  <h1>so i want to write a torrent client, from scratch.</h1>
+  <pre>
+    a while ago i had the idea to write a torrent client.
+    i thought it could be a fun project, because the protocol is pretty interesting.
+
+    my goal for a "working" hobby project would be to pass a torrent file to my application
+    then have it initiate the download. (All in the console, for now)
+
+    theres a few things going on, and the easiest way to get started is to break it down into
+    steps.
+
+      1. we need to be able to parse a torrent file.
+      2. we need to be able to use our parsed torrent file.
+      3. we need to be able to connect to a "tracker" and start asking people for pieces of our file(s).
+      4. we need to compose those pieces into a file.
+
+    for now lets focus on #1 and #2.
+
+    for #1, it turns out that torrent files are encoded with a recursive data format called BEncode.
+    a TL;DR for the spec is:
+
+      - a bencode file is an array of bytes that are all ASCII.
+      - a bencode file consists of four types.
+        - integers: positive whole numbers. wrapped with the ascii characters 'i' and 'e'. eg: "i10e"
+        - byte strings: an arbitrary number of bytes. preceded by its length, with a delimiter ':' in
+        between. eg: "5:apple"
+        - lists: an arbitrary number of values inside, including recursive lists and dictionaries.
+        wrapped with the characters 'l' and 'e'. eg: "li1ei2ei3ee" for [1, 2, 3].
+        - dictionaries: an arbitrary number of values inside. wrapped with the characters 'd' and 'e'.
+        which come in pairs of bytestring key and value of any type. eg: "d3:fooi1e3:bari2ee" for a map
+        of: { "foo": 1, "bar": 2 }.
+
+    <a href="https://en.wikipedia.org/wiki/Bencode">check out wikipedia for the full details.</a>
+
+    i haven't written a parser before, and since this is a fairly simple file format specification i figured
+    it would be a good place to start.
+
+    full disclosure, i am writing this after getting a working rust library going.
+
+
+    i created a library whos only purpose is to parse a bencode byte array to a Bencode tree. i decided to call it
+    <a href="https://github.com/tijb/benko">tijb/benko</a>.
+
+    it works by collecting the different types that are allowed to be in a bencode file (see above), into an enum,
+    so that we are allowed to create lists of them, even when their values are different types. This is the definition:
+        pub enum Benc {
+            Int(BInt),
+            Str(BStr),
+            Vec(BVec),
+            Map(BMap),
+        }
+
+    where the types are defined as:
+        pub type BInt = usize;
+        pub type BStr = Vec<u8>;
+        pub type BVec = Vec<Benc>;
+        pub type BMap = BMapImpl;
+
+    (don't mind the BMap to BMapImpl type for now, this was a usability issue, caused by the inherent non-Copy-ability
+    of the Benc enum type, which initially made the borrow checker very unhappy). If you want to see the specifics you
+    can look at the source <a href="https://github.com/tijb/benko/blob/main/src/lib.rs#L54-L98"> here</a>.
+
+    The next step will be creating a library (which I'll be calling Torq) that will take a parsed Benc tree, and turn
+    that into an easily usable set of torrent file structs. Along with any other methods that end up being useful or
+    necessary.
+
+    I already know however, that the Torq library will not be zero-dependency, because of the need to collect SHA hashes
+    when we go and talk to the trackers, and I really don't think its worth reimplementing SHA hashing for this project.
+
+    I'll make another post here in a while once i get something working fully for Torq.
+
+    - tim
+  </pre>
+</body>
